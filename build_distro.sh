@@ -12,19 +12,6 @@ if [ -z $VERSION ]; then
     exit 1
 fi
 
-# Make sure we have a bintray user
-if [ -z $BINTRAY_USER ]; then
-    echo "Please set your bintray username in the BINTRAY_USER env var."
-    exit 1
-fi
-
-
-# Make sure we have a bintray API key
-if [ -z $BINTRAY_API_KEY ]; then
-    echo "Please set your bintray API key in the BINTRAY_API_KEY env var."
-    exit 1
-fi
-
 #clear the target/dist dir and recreate it
 rm -rf ./target/dist
 mkdir -p ./target/dist
@@ -67,15 +54,7 @@ done
 # remove the last tmp dir
 rm -rf ./target/dist/tmp
 
-# Upload
+# change to dist files
+
 cd target/dist
 
-for DISTRIBUTABLE in *.zip ; do
-    curl -v -T ${DISTRIBUTABLE} \
-     -u${BINTRAY_USER}:${BINTRAY_API_KEY} \
-     -H "X-Bintray-Package:${PACKAGE}" \
-     -H "X-Bintray-Version:${VERSION}" \
-     -H "X-Bintray-Publish:1" \
-     -H "X-Bintray-Override:1" \
-     https://api.bintray.com/content/magnetic-io/downloads/${PACKAGE}/${DISTRIBUTABLE}   
-done
