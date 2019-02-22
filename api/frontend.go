@@ -41,7 +41,7 @@ func PostFrontend(c *gin.Context) {
 
 	var frontend haproxy.Frontend
 
-	if c.Bind(&frontend) {
+	if c.Bind(&frontend) != nil {
 		if err := Config(c).AddFrontend(&frontend); err != nil {
 			HandleError(c, err)
 		} else {
@@ -86,7 +86,7 @@ func PostFrontendFilter(c *gin.Context) {
 	var Filter haproxy.Filter
 	frontend := c.Params.ByName("name")
 
-	if c.Bind(&Filter) {
+	if c.Bind(&Filter) != nil {
 		Config(c).AddFilter(frontend, &Filter)
 		HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "created Filter"})
 	} else {

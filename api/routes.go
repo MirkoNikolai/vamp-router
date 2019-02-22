@@ -42,7 +42,7 @@ func PutRoute(c *gin.Context) {
 	var route haproxy.Route
 	routeName := c.Params.ByName("route")
 
-	if c.Bind(&route) {
+	if c.Bind(&route) != nil {
 		if err := Config(c).UpdateRoute(routeName, &route); err != nil {
 			HandleError(c, err)
 		} else {
@@ -60,7 +60,7 @@ func PostRoute(c *gin.Context) {
 
 	var route haproxy.Route
 
-	if c.Bind(&route) {
+	if c.Bind(&route) != nil {
 		if err := Config(c).AddRoute(route); err != nil {
 			HandleError(c, err)
 		} else {
@@ -126,7 +126,7 @@ func PutRouteService(c *gin.Context) {
 	routeName := c.Params.ByName("route")
 	serviceName := c.Params.ByName("service")
 
-	if c.Bind(&service) {
+	if c.Bind(&service) != nil {
 		if err := Config(c).UpdateRouteService(routeName, serviceName, &service); err != nil {
 			HandleError(c, err)
 		} else {
@@ -145,7 +145,7 @@ func PutRouteServices(c *gin.Context) {
 	var services []*haproxy.Service
 	routeName := c.Params.ByName("route")
 
-	if c.Bind(&services) {
+	if c.Bind(&services) != nil {
 		if err := Config(c).UpdateRouteServices(routeName, services); err != nil {
 			HandleError(c, err)
 		} else {
@@ -164,7 +164,7 @@ func PostRouteService(c *gin.Context) {
 	var services []*haproxy.Service
 	routeName := c.Params.ByName("route")
 
-	if c.Bind(&services) {
+	if c.Bind(&services) != nil {
 		if err := Config(c).AddRouteServices(routeName, services); err != nil {
 			HandleError(c, err)
 		} else {
@@ -248,7 +248,7 @@ func PostServiceServer(c *gin.Context) {
 	routeName := c.Params.ByName("route")
 	serviceName := c.Params.ByName("service")
 
-	if c.Bind(&server) {
+	if c.Bind(&server) != nil {
 		if err := Config(c).AddServiceServer(routeName, serviceName, &server); err != nil {
 			HandleError(c, err)
 		} else {
@@ -269,7 +269,7 @@ func PutServiceServer(c *gin.Context) {
 	serviceName := c.Params.ByName("service")
 	serverName := c.Params.ByName("server")
 
-	if c.Bind(&server) {
+	if c.Bind(&server) != nil {
 		if err := Config(c).UpdateServiceServer(routeName, serviceName, serverName, &server); err != nil {
 			HandleError(c, err)
 		} else {

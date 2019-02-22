@@ -41,7 +41,7 @@ func PostBackend(c *gin.Context) {
 
 	var backend haproxy.Backend
 
-	if c.Bind(&backend) {
+	if c.Bind(&backend) != nil {
 
 		if err := Config(c).AddBackend(&backend); err != nil {
 			HandleError(c, err)
@@ -104,7 +104,7 @@ func PostServer(c *gin.Context) {
 	var server haproxy.ServerDetail
 	backend := c.Params.ByName("name")
 
-	if c.Bind(&server) {
+	if c.Bind(&server) != nil {
 		if err := Config(c).AddServer(backend, &server); err != nil {
 			HandleError(c, err)
 		} else {
@@ -124,7 +124,7 @@ func PutServerWeight(c *gin.Context) {
 	backend := c.Params.ByName("name")
 	server := c.Params.ByName("server")
 
-	if c.Bind(&json) {
+	if c.Bind(&json) !=  nil {
 		status, err := Runtime(c).SetWeight(backend, server, json.Weight)
 
 		// check on Runtime errors
