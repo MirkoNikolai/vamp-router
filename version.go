@@ -2,4 +2,4 @@ package main
 
 var GitCommit string
 
-const Version = "0.7.11"
+const Version = "0.7.12"
