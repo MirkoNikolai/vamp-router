@@ -6,6 +6,9 @@ import (
 )
 
 func GetUUID() string {
-	myUUID := uuid.NewV4()
+	myUUID,err := uuid.NewV4()
+	if err != nil {
+		return "ERROR" 
+	}
 	return strings.Split(myUUID.String(), "-")[0]
 }
