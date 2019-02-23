@@ -2,7 +2,7 @@ package zookeeper
 
 import (
 	"encoding/json"
-	"github.com/magneticio/vamp-router/haproxy"
+	"github.com/MirkoNikolai/vamp-router/haproxy"
 	gologger "github.com/op/go-logging"
 	"github.com/samuel/go-zookeeper/zk"
 	"strings"
