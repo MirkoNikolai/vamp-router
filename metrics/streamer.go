@@ -1,7 +1,7 @@
 package metrics
 
 import (
-	"github.com/magneticio/vamp-router/haproxy"
+	"github.com/MirkoNikolai/vamp-router/haproxy"
 	gologger "github.com/op/go-logging"
 	"strconv"
 	"strings"
