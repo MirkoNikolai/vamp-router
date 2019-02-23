@@ -2,13 +2,13 @@ package main
 
 import (
 	"flag"
-	"github.com/magneticio/vamp-router/api"
-	"github.com/magneticio/vamp-router/haproxy"
-	"github.com/magneticio/vamp-router/helpers"
-	"github.com/magneticio/vamp-router/logging"
-	"github.com/magneticio/vamp-router/metrics"
-	"github.com/magneticio/vamp-router/tools"
-	"github.com/magneticio/vamp-router/zookeeper"
+	"github.com/MirkoNikolai/vamp-router/api"
+	"github.com/MirkoNikolai/vamp-router/haproxy"
+	"github.com/MirkoNikolai/vamp-router/helpers"
+	"github.com/MirkoNikolai/vamp-router/logging"
+	"github.com/MirkoNikolai/vamp-router/metrics"
+	"github.com/MirkoNikolai/vamp-router/tools"
+	"github.com/MirkoNikolai/vamp-router/zookeeper"
 	gologger "github.com/op/go-logging"
 	"os"
 	"path/filepath"
@@ -49,7 +49,7 @@ func init() {
 	flag.StringVar(&kafkaHost, "kafkaHost", "", "The hostname or ip address of the Kafka host")
 	flag.IntVar(&kafkaPort, "kafkaPort", 9092, "The port of the Kafka host")
 	flag.StringVar(&zooConString, "zooConString", "", "A zookeeper ensemble connection string")
-	flag.StringVar(&zooConKey, "zooConKey", "magneticio/vamplb", "Zookeeper root key")
+	flag.StringVar(&zooConKey, "zooConKey", "MirkoNikolai/vamplb", "Zookeeper root key")
 	flag.StringVar(&customWorkDir, "customWorkDir", "", "Custom working directory for sockets and pid files, default to data/")
 	flag.BoolVar(&headless, "headless", false, "Run without any logging output to the console")
 }

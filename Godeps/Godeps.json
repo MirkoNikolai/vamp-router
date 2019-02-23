@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/magneticio/vamp-router",
+	"ImportPath": "github.com/MirkoNikolai/vamp-router",
 	"GoVersion": "go1.4.1",
 	"Packages": [
 		"./..."

@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/magneticio/vamp-router/haproxy"
+	"github.com/MirkoNikolai/vamp-router/haproxy"
 	"io/ioutil"
 	"net/http"
 	"net/http/cookiejar"

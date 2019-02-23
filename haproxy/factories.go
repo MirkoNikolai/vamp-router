@@ -1,7 +1,7 @@
 package haproxy
 
 import (
-	"github.com/magneticio/vamp-router/tools"
+	"github.com/MirkoNikolai/vamp-router/tools"
 	"path"
 )
 

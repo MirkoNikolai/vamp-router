@@ -1,9 +1,9 @@
 package api
 
 import (
-	"github.com/magneticio/vamp-router/haproxy"
-	"github.com/magneticio/vamp-router/helpers"
-	"github.com/magneticio/vamp-router/metrics"
+	"github.com/MirkoNikolai/vamp-router/haproxy"
+	"github.com/MirkoNikolai/vamp-router/helpers"
+	"github.com/MirkoNikolai/vamp-router/metrics"
 	gologger "github.com/op/go-logging"
 	"testing"
 )

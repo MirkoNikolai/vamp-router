@@ -3,8 +3,8 @@ package api
 import (
 	"errors"
 	"github.com/gin-gonic/gin"
-	"github.com/magneticio/vamp-router/haproxy"
-	"github.com/magneticio/vamp-router/metrics"
+	"github.com/MirkoNikolai/vamp-router/haproxy"
+	"github.com/MirkoNikolai/vamp-router/metrics"
 	gologger "github.com/op/go-logging"
 	"net/http"
 )

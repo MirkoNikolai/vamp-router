@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/magneticio/vamp-router/metrics"
+	"github.com/MirkoNikolai/vamp-router/metrics"
 	"net/http"
 )
 
