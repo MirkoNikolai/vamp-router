@@ -214,5 +214,4 @@ func main() {
 	} else {
 		restApi.Run("0.0.0.0:" + strconv.Itoa(port))
 	}
-
 }
