@@ -1,0 +1,53 @@
+{
+    "frontends": [
+        {
+            "name": "MyTest-fe-001",
+            "bindPort": 8000,
+            "bindIp": "0.0.0.0",
+            "defaultBackend": "MyTest-be-001",
+            "mode": "http",
+            "options": {
+            "httpClose": true
+            },
+            "acls": [],
+            "filters" : []
+        }
+    ],
+    "backends": [
+        {
+            "name": "",
+            "mode": "http",
+            "servers": [
+            {
+                "name": "MyTest-be-001",
+                "host": "192.168.59.103",
+                "port": 3000,
+                "weight": 100,
+                "maxconn": 1000,
+                "check": false,
+                "checkInterval": 10
+            }
+            ],
+            "proxyMode": false,
+            "options": {
+            "abortOnClose": false,
+            "allBackups": false,
+            "checkCache": false,
+            "forwardFor": false,
+            "httpClose": false,
+            "httpCheck": false,
+            "ldapCheck": false,
+            "mysqlCheck": false,
+            "pgsqlCheck": false,
+            "redisCheck": false,
+            "smtpCheck": false,
+            "sslHelloCheck": false,
+            "tcpKeepAlive": false,
+            "tcpLog": false,
+            "tcpSmartAccept": false,
+            "tcpSmartConnect": false,
+            "transparent": false
+            }
+        }
+    ]
+}
