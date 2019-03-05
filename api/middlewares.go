@@ -34,11 +34,11 @@ func LoggerMiddleware(log *gologger.Logger) gin.HandlerFunc {
 
 		switch {
 		case statusCode >= 200 && statusCode <= 399:
-			log.Notice(format, method, c.Request.URL.Path, statusCode, latency)
+			log.Noticef(format, method, c.Request.URL.Path, statusCode, latency)
 		case statusCode >= 400 && statusCode <= 499:
-			log.Warning(format, method, c.Request.URL.Path, statusCode, latency)
+			log.Warningf(format, method, c.Request.URL.Path, statusCode, latency)
 		default:
-			log.Error(format, method, c.Request.URL.Path, statusCode, latency)
+			log.Errorf(format, method, c.Request.URL.Path, statusCode, latency)
 		}
 	}
 }
