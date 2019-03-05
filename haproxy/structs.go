@@ -29,6 +29,7 @@ import (
 
   All items in a route map to actual Haproxy types from the vamp-loadbalancer/haproxy package.
 */
+/*
 type Route struct {
 	Name      string     `json:"name" binding:"required" valid:"routeName"`
 	Port      int        `json:"port" binding:"required"`
@@ -37,6 +38,17 @@ type Route struct {
 	TcpQuota  Quota      `json:"tcpQuota"`
 	Filters   []*Filter  `json:"filters"`
 	Services  []*Service `json:"services"`
+}
+*/ 
+
+type Route struct {
+	Name      string     `json: name`
+	Port      int        `json: port`
+	Protocol  string     `json: protocol`
+	HttpQuota Quota      `json: httpQuota`
+	TcpQuota  Quota      `json: tcpQuota`
+	Filters   []*Filter  `json: filters`
+	Services  []*Service `json: services`
 }
 
 type Filter struct {
