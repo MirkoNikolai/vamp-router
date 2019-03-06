@@ -60,7 +60,7 @@ func PostRoute(c *gin.Context) {
 
 	var route haproxy.Route
 
-	if c.Bind(&route) != nil {
+	if c.BindJson(&route) != nil {
 		if err := Config(c).AddRoute(route); err != nil {
 			HandleError(c, err)
 		} else {

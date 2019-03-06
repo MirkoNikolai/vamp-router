@@ -30,7 +30,7 @@ func LoggerMiddleware(log *gologger.Logger) gin.HandlerFunc {
 
 		method := c.Request.Method
 		statusCode := c.Writer.Status()
-		format := "%-5s %-50s %3d %12v "
+		format := "%-5s %-50s %3d %12v"
 
 		switch {
 		case statusCode >= 200 && statusCode <= 399:
