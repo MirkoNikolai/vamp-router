@@ -21,13 +21,13 @@ func PostConfig(c *gin.Context) {
 
 	var config haproxy.Config
 
-	if err := c.Bind(&config); err != nil {
+	if err := c.ShouldBindJSON(&config); err != nil {
 		if err := Config(c).UpdateConfig(&config); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "updated config"})
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": err.Error()})
+		c.JSON(http.StatusBadRequest, gin.H{"status":  err.Error()})
 	}
 }
