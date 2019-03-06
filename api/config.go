@@ -28,6 +28,6 @@ func PostConfig(c *gin.Context) {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "updated config"})
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request"})
+		c.JSON(http.StatusBadRequest, gin.H{"status": err.Error()})
 	}
 }

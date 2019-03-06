@@ -68,7 +68,7 @@ func PostRoute(c *gin.Context) {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "created route"})
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request - " :err.Error() })
+		c.JSON(http.StatusBadRequest, gin.H{"status": err.Error() })
 	}
 }
 
