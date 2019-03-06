@@ -15,11 +15,11 @@
     ],
     "backends": [
         {
-            "name": "",
+            "name": "MyTest-be-001",
             "mode": "http",
             "servers": [
             {
-                "name": "MyTest-be-001",
+                "name": "MyTest-be-001-01",
                 "host": "192.168.59.103",
                 "port": 3000,
                 "weight": 100,
@@ -49,5 +49,6 @@
             "transparent": false
             }
         }
-    ]
+    ],
+    "routes": []
 }
