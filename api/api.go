@@ -17,7 +17,7 @@ func CreateApi(log *gologger.Logger, haConfig *haproxy.Config, haRuntime *haprox
 	r.Use(HaproxyMiddleware(haConfig, haRuntime))
 	r.Use(LoggerMiddleware(log))
 	r.Use(gin.Recovery())
-	v1 := r.Group("/v1")
+	v1 := r.Group("/api/v1")
 
 	{
 
