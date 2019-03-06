@@ -21,7 +21,7 @@ func PostConfig(c *gin.Context) {
 
 	var config haproxy.Config
 
-	if c.Bind(&config) != nil {
+	if err := c.Bind(&config); err != nil {
 		if err := Config(c).UpdateConfig(&config); err != nil {
 			HandleError(c, err)
 		} else {
