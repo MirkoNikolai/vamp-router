@@ -60,6 +60,7 @@ func PostRoute(c *gin.Context) {
 
 	var route haproxy.Route
 
+	// This will infer what binder to use depending on the content-type header.
 	if c.ShouldBind(&route) != nil {
 		if err := Config(c).AddRoute(route); err != nil {
 			HandleError(c, err)
@@ -70,14 +71,6 @@ func PostRoute(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request - " + err.Error() })
 	}
 }
-
-// This will infer what binder to use depending on the content-type header.
-if err := c.ShouldBind(&form); err != nil {
-	c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-	return
-}
-
-
 
 func DeleteRoute(c *gin.Context) {
 
@@ -179,7 +172,7 @@ func PostRouteService(c *gin.Context) {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "created service(s)"})
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request"})
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()}) 
 	}
 }
 
