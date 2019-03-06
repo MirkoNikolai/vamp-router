@@ -126,7 +126,7 @@ func main() {
 		WorkingDir:    filepath.Join(workDir.Dir() + "/"),
 	}
 
-	log.Notice("Attempting to load config at %s", configPath)
+	log.Noticef("Attempting to load config at %s", configPath)
 	err := haConfig.GetConfigFromDisk()
 
 	if err != nil {
@@ -141,7 +141,7 @@ func main() {
 	}
 
 	if err := haRuntime.SetPid(haConfig.PidFile); err != nil {
-		log.Notice("Pidfile exists at %s, proceeding...", haConfig.PidFile)
+		log.Noticef("Pidfile exists at %s, proceeding...", haConfig.PidFile)
 	} else {
 		log.Notice("Created new pidfile...")
 	}
