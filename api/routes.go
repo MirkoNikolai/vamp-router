@@ -61,14 +61,14 @@ func PostRoute(c *gin.Context) {
 	var route haproxy.Route
 
 	// This will infer what binder to use depending on the content-type header.
-	if c.ShouldBind(&route) != nil {
+	if err := c.ShouldBind(&route); err != nil {
 		if err := Config(c).AddRoute(route); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "created route"})
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request - " + err.Error() })
+		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request - " :err.Error() })
 	}
 }
 
@@ -165,14 +165,14 @@ func PostRouteService(c *gin.Context) {
 	var services []*haproxy.Service
 	routeName := c.Params.ByName("route")
 
-	if c.Bind(&services) != nil {
+	if err:= c.Bind(&services); err != nil {
 		if err := Config(c).AddRouteServices(routeName, services); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "created service(s)"})
 		}
 	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()}) 
+		c.JSON(http.StatusBadRequest, gin.H{"status": err.Error()}) 
 	}
 }
 
