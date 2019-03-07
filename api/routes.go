@@ -42,14 +42,14 @@ func PutRoute(c *gin.Context) {
 	var route haproxy.Route
 	routeName := c.Params.ByName("route")
 
-	if c.Bind(&route) != nil {
+	if err := c.ShouldBindJSON(&route); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
 		if err := Config(c).UpdateRoute(routeName, &route); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), http.StatusOK, gin.H{"status": "updated route"})
 		}
-	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request"})
 	}
 }
 
@@ -61,14 +61,14 @@ func PostRoute(c *gin.Context) {
 	var route haproxy.Route
 
 	// This will infer what binder to use depending on the content-type header.
-	if err := c.ShouldBind(&route); err != nil {
+	if err := c.ShouldBindJSON(&route); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
 		if err := Config(c).AddRoute(route); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "created route"})
 		}
-	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": err.Error() })
 	}
 }
 
@@ -127,14 +127,14 @@ func PutRouteService(c *gin.Context) {
 	routeName := c.Params.ByName("route")
 	serviceName := c.Params.ByName("service")
 
-	if c.Bind(&service) != nil {
+	if err := c.ShouldBindJSON(&service); err != nil {
+		c.String(500, "Invalid JSON")
+	} else {
 		if err := Config(c).UpdateRouteService(routeName, serviceName, &service); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), 200, gin.H{"status": "updated service"})
-		}
-	} else {
-		c.String(500, "Invalid JSON")
+		}		
 	}
 }
 
@@ -146,14 +146,14 @@ func PutRouteServices(c *gin.Context) {
 	var services []*haproxy.Service
 	routeName := c.Params.ByName("route")
 
-	if c.Bind(&services) != nil {
+	if err := c.ShouldBindJSON(&services) != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+	} else {
 		if err := Config(c).UpdateRouteServices(routeName, services); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), http.StatusOK, gin.H{"status": "updated services"})
 		}
-	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": "bad request"})
 	}
 }
 
@@ -165,14 +165,15 @@ func PostRouteService(c *gin.Context) {
 	var services []*haproxy.Service
 	routeName := c.Params.ByName("route")
 
-	if err:= c.Bind(&services); err != nil {
+	if err:= c.ShouldBindJSON(&services); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"status": err.Error()}) 
+	} else {
 		if err := Config(c).AddRouteServices(routeName, services); err != nil {
 			HandleError(c, err)
 		} else {
 			HandleReload(c, Config(c), http.StatusCreated, gin.H{"status": "created service(s)"})
 		}
-	} else {
-		c.JSON(http.StatusBadRequest, gin.H{"status": err.Error()}) 
+
 	}
 }
 
