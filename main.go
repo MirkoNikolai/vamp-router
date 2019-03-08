@@ -49,7 +49,7 @@ func init() {
 	flag.StringVar(&kafkaHost, "kafkaHost", "", "The hostname or ip address of the Kafka host")
 	flag.IntVar(&kafkaPort, "kafkaPort", 9092, "The port of the Kafka host")
 	flag.StringVar(&zooConString, "zooConString", "", "A zookeeper ensemble connection string")
-	flag.StringVar(&zooConKey, "zooConKey", "MirkoNikolai/vamplb", "Zookeeper root key")
+	flag.StringVar(&zooConKey, "zooConKey", "evoila/vamplb", "Zookeeper root key")
 	flag.StringVar(&customWorkDir, "customWorkDir", "", "Custom working directory for sockets and pid files, default to data/")
 	flag.BoolVar(&headless, "headless", false, "Run without any logging output to the console")
 }
@@ -171,7 +171,6 @@ func main() {
 		kafka := metrics.KafkaProducer{Log: log}
 		kafka.In(kafkaChannel)
 		kafka.Start(kafkaHost, kafkaPort)
-
 	}
 
 	sseChannel := make(chan metrics.Metric, 10000)
